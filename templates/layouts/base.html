@@ -11,17 +11,60 @@
     <link rel="Icon" type="image/png" href="{% static 'main/img/jt.png' %}">
     <title>John Technologies</title>
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/slick/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'main/slick/slick/slick-theme.css' %}">
 
 </head>
 <body>
-    {% include 'layouts/navbar.html' %}
+{% include 'layouts/navbar.html' %}
 
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
-    {% include 'layouts/footer.html' %}
-    <script src="{% static 'main/js/main.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+{% include 'layouts/footer.html' %}
+
+<script src="{% static 'main/js/main.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'main/slick/slick/slick.js' %}"></script>
+
+{% block extra_js %}
+    <script>
+        $('.one-time').slick({
+            dots: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2580,
+            infinitive: true,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            fade: true,
+            adaptiveHeight: true,
+            cssEase: 'linear',
+            responsive: [
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
+                }
+            ]
+        });
+    </script>
+{% endblock %}
+
 </body>
 </html>

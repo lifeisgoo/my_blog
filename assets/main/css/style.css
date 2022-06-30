@@ -984,3 +984,10 @@ footer p {
 	}
 
 }
+
+
+.work_image {
+	width: 246px;
+	height: 200px;
+	border-radius: 10px;
+}
