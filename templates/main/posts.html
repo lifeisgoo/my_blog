@@ -9,10 +9,10 @@
         <div class="p_second_boxs">
             {% for blog in object_list %}
             <div>
-                <h1>{{ blog.tittle }}</h1>
+                <h1><a href="{% url 'blogdetail' blog.pk %}">{{ blog.tittle }}</a></h1>
                 <h2> {{ blog.created_at|date:"d F Y" }} &nbsp; &#10072; &nbsp; {{ blog.category }}</h2>
                 <p>
-                    {{ blog.body|truncatewords:'30' }}
+                    {{ blog.body|truncatewords:'30'|safe }}
                 </p>
             </div>
             <hr>

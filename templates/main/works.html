@@ -21,7 +21,6 @@
                 <h2>Women and Kids Store</h2>
             </div>
         </div>
-
     </section>
 
 
@@ -32,24 +31,86 @@
                 <div class="news">
                     <div class="triangle">
                         <img src="{{ work.work_image.url }}" alt="" class="work_image">
-                        <div>
-                            <a href="./z_dashboard_ichi_workss.html">{{ work.title }}</a>
+                        <div class="triangle_in">
+                            <a href="{% url 'detail' work.pk %}">{{ work.title }}</a>
                             <div class="date">
                                 <div class="boxx">
                                     <p>{{ work.created_at|date:"Y" }}</p>
                                 </div>
-                                <h2>{{ work.category }}</h2>
+
+                                <div class="ms-4 d-flex">
+                                    {% for i in work.category.values %}
+                                        {% if forloop.last %}
+                                            <h2 class="m-0">{{ i.name }}</h2>
+                                        {% else %}
+                                            <h2 class="ms-0 me-3">{{ i.name }},</h2>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
-                            <p>
+
+                            <div>
                                 {{ work.body|truncatewords:'30'|safe }}
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-            <hr>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        {% if page_obj.has_previous %}
+                            <a class="page-link" href="?page{{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        {% endif %}
+                    </li>
+                    <li class="page-item">
+                        {% if page_obj.has_next %}
+                        <a class="page-link" href="?page{{  }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </section>
 {% endblock %}
 
-{% block extra_js %}{% endblock %}
+{% block extra_js %}
+    <script>
+        $('.one-time').slick({
+            dots: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2580,
+            infinitive: true,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            fade: true,
+            adaptiveHeight: true,
+            cssEase: 'linear',
+            responsive: [
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
+                }
+            ]
+        });
+    </script>
+{% endblock %}
